@@ -1,0 +1,21 @@
+{
+  "regenie_gwas.phenos": "String",
+  "regenie_gwas.step1_qc_snplist": "File?",
+  "regenie_gwas.step1_qc_keep": "File?",
+  "regenie_gwas.step2_cpus": 16,
+  "regenie_gwas.pheno_file": "File",
+  "regenie_gwas.output_tag": "output",
+  "regenie_gwas.step2Datasets": [{ "prefix": "file", "bgen": "file.bgen", "sample": "file.sample" }],
+  "regenie_gwas.catCovars": "String? (optional)",
+  "regenie_gwas.step2_mem": 32,
+  "regenie_gwas.covar_file": "File",
+  "regenie_gwas.step1dataset": { "prefix": "file", "bed": "file.bed", "bim": "file.bim", "fam": "file.fam" },
+  "regenie_gwas.maxCatLevels": 10,
+  "regenie_gwas.covars": "String",
+  "regenie_gwas.step1_mem": 32,
+  "regenie_gwas.step2_minMAC": 100,
+  "regenie_gwas.binary_trait": false,
+  "regenie_gwas.step1_cpus": 16,
+  "regenie_gwas.ref_first": false
+}
+

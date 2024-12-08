@@ -1,0 +1,35 @@
+{
+  "stage-common.step1_qc_snplist": "File?",
+  "stage-common.step2Datasets___dxfiles": [],
+  "stage-common.ref_first": false,
+  "stage-common.covars": "String",
+  "stage-common.step1_mem": 32,
+  "stage-common.covar_file": "File",
+  "stage-common.step2Datasets": {
+    "___": [{
+      "prefix": "file",
+      "bgen": "file.bgen",
+      "sample": "file.sample"
+    }]
+  },
+  "stage-common.step1_cpus": 16,
+  "stage-common.step2_cpus": 16,
+  "stage-common.maxCatLevels": 10,
+  "stage-common.pheno_file": "File",
+  "stage-common.step2_minMAC": 100,
+  "stage-common.phenos": "String",
+  "stage-common.binary_trait": false,
+  "stage-common.step2_mem": 32,
+  "stage-common.catCovars": "String? (optional)",
+  "stage-common.step1_qc_keep": "File?",
+  "stage-common.step1dataset___dxfiles": [],
+  "stage-common.output_tag": "output",
+  "stage-common.step1dataset": {
+    "___": {
+      "prefix": "file",
+      "bed": "file.bed",
+      "bim": "file.bim",
+      "fam": "file.fam"
+    }
+  }
+}
