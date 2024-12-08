@@ -74,7 +74,8 @@ workflow regenie_gwas {
 	call merge_by_pheno {
 		input: 
 			step2_results=flatten(step2.step2_out), 
-			output_tag=output_tag
+			output_tag=output_tag,
+			phenos=phenos
 	}
 
 	output {
@@ -219,36 +220,38 @@ task merge_by_pheno {
 	input {
 		Array[File] step2_results
 		String output_tag
+		String phenos
 	}
 
 	command <<<
 		set -euo pipefail
 		
-		inputfiles_path=$(dirname ~{step2_results[0]})
+		inputfiles_directory=$(dirname ~{step2_results[0]})
 		current_directory=$PWD
 
 		echo "== Files in input folder =="
 		echo "Current directory: $current_directory"
-		echo "Inout files directory: $inputfiles_path"
-		ls -lh $inputfiles_path
+		echo "Input files directory: $inputfiles_path"
+		ls -lh $inputfiles_directory
 
 		echo "== Running merge by pheno =="
 		# Get a list of unique phenotypes from the filenames
-		cd $inputfiles_path
-		phenos=$(ls *.regenie.gz | sed -e "s/^\(.*\)\.\(.*\)\.regenie\.gz$/\2/" | sort | uniq)
+		cd $inputfiles_directory
+		phenos=$(echo "~{phenos}" | tr ',' ' ')
 
 		# Loop through each phenotype and concatenate the files
 		cd $current_directory
 		for pheno in $phenos; do
+			echo "Processing phenotype: $pheno"
 			# Create a temporary file to store the concatenated results
 			temp_file="temp_${pheno}.regenie"
 			
 			# Extract the header from the first file
-			first_file=$(ls $inputfiles_path/*.$pheno.regenie.gz | head -n 1)
+			first_file=$(ls $inputfiles_directory/*$pheno.regenie.gz | head -n 1)
 			zcat $first_file | head -n 1 > $temp_file
 			
 			# Concatenate the rest of the files, skipping the header
-			for file in $inputfiles_path/*.$pheno.regenie.gz; do
+			for file in $inputfiles_directory/*.$pheno.regenie.gz; do
 				zcat $file | tail -n +2 >> $temp_file
 			done
 			
