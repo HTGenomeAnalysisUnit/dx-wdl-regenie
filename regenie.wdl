@@ -126,6 +126,7 @@ task step1 {
 			--covarColList ~{covars} \
 			~{if defined(catCovars) then "--catCovarList ${catCovars}" else ""} \
 			--maxCatLevels ~{maxCatLevels} \
+			--apply-rint \
 			--out ~{output_tag}-regenie_step1 \
 			~{if binary_trait then "--bt" else ""} \
 			--bsize 1000 --lowmem --threads ~{step1_cpus} --gz 
@@ -139,7 +140,7 @@ task step1 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:4.0--h90dfdf2_1"
+    	docker: "quay.io/biocontainers/regenie:3.1.1--h2b233e7_0"
 		dx_instance_type: "mem1_ssd1_v2_x~{step1_cpus}"
     	cpu: step1_cpus
     	memory: step1_mem + "GB"
@@ -186,12 +187,13 @@ task step2 {
 			--pred ~{output_tag}-regenie_step1_pred.list \
 			--phenoFile ~{pheno_file} \
 			--covarFile ~{covar_file} \
-			--phenoCol ~{phenos} \
+			--phenoColList ~{phenos} \
 			--covarColList ~{covars} \
 			~{if defined(catCovars) then "--catCovarList ~{catCovars}" else ""} \
 			--maxCatLevels ~{maxCatLevels} \
 			--out "~{output_tag}-~{step2dataset.prefix}" \
 			--minMAC ~{step2_minMAC} \
+			--apply-rint \
 			~{if binary_trait then "--bt --firth --approx" else ""} \
 			~{if ref_first then "--ref-first" else ""} \
 			--bsize 200 --threads ~{step2_cpus} --gz 
@@ -203,7 +205,7 @@ task step2 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:4.0--h90dfdf2_1"
+    	docker: "quay.io/biocontainers/regenie:3.1.1--h2b233e7_0"
 		dx_instance_type: "mem1_ssd1_v2_x~{step2_cpus}"
     	cpu: step2_cpus
     	memory: step2_mem + "GB"
@@ -231,7 +233,7 @@ task merge_by_pheno {
 
 		echo "== Files in input folder =="
 		echo "Current directory: $current_directory"
-		echo "Input files directory: $inputfiles_path"
+		echo "Input files directory: $inputfiles_directory"
 		ls -lh $inputfiles_directory
 
 		echo "== Running merge by pheno =="
