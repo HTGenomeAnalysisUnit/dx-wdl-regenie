@@ -204,7 +204,7 @@ task step2 {
 
 	runtime {
     	docker: "quay.io/biocontainers/regenie:4.0--h90dfdf2_1"
-		dx_instance_type: "mem1_ssd1_v2_x~{step1_cpus}"
+		dx_instance_type: "mem1_ssd1_v2_x~{step2_cpus}"
     	cpu: step2_cpus
     	memory: step2_mem + "GB"
     }
