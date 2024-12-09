@@ -226,7 +226,7 @@ task merge_by_pheno {
 	}
 
 	command <<<
-		set -euo pipefail
+		set -eu
 		
 		inputfiles_directory=$(dirname ~{step2_results[0]})
 		current_directory=$PWD
@@ -252,6 +252,7 @@ task merge_by_pheno {
 
 			# Extract the header from the first file
 			first_file=$(ls $inputfiles_directory/*$pheno.regenie.gz | head -n 1)
+			echo "Extracting header from $first_file"
 			zcat $first_file | head -n 1 > $temp_file
 			echo "Header saved to $temp_file"
 
