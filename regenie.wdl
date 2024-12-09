@@ -140,7 +140,7 @@ task step1 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
+    	docker: "ghcr.io/rgcgithub/regenie/regenie:v3.1.4.gz"
 		dx_instance_type: "mem1_ssd1_v2_x~{step1_cpus}"
     	cpu: step1_cpus
     	memory: step1_mem + "GB"
@@ -205,7 +205,7 @@ task step2 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
+    	docker: "ghcr.io/rgcgithub/regenie/regenie:v3.1.4.gz"
 		dx_instance_type: "mem1_ssd1_v2_x~{step2_cpus}"
     	cpu: step2_cpus
     	memory: step2_mem + "GB"
@@ -275,7 +275,7 @@ task merge_by_pheno {
 	}
 
 	runtime {
-		docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
+		docker: "ghcr.io/rgcgithub/regenie/regenie:v3.1.4.gz"
 		dx_instance_type: "mem1_ssd1_v2_x4"
 	}
 

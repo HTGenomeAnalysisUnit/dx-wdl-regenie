@@ -2,6 +2,8 @@
 
 This is a WDL workflow for running [Regenie](https://rgcgithub.github.io/regenie/) on a set of VCF files. The workflow is designed to run on the DNANexus/RAP platform, but can be run locally as well.
 
+This workflow use **regenie v3.1.4** from `ghcr.io/rgcgithub/regenie/regenie:v3.1.4.gz` official docker image. More recent versions results in much longer runtimes at step2 for some unknown reason. We are investigating this with the regenie developers.
+
 ## Steps
 
 1. Run regenie step1 on input bed/bim/fam files
