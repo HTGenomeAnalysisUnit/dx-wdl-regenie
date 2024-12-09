@@ -52,3 +52,13 @@ Example for a file in a different project:
 ```
 
 You can get the file ID of a specific file by running `dx describe /path/to/file`.
+
+### Expected outputs
+
+The workflow will produce the following outputs in the configured destination folder:
+
+- step1 results including pred list file and one gzipped file per phenotype with the LOCO results
+- step2 results including one gzipped file per phenotype
+- logs of step1 and step2 execution
+  
+The output folder will also contain an `intermediate` folder with the intermediate step2 results per chromosome. It is usually safe to delete this folder to save storage.
