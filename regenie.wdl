@@ -140,7 +140,7 @@ task step1 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:3.1.1--h2b233e7_0"
+    	docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
 		dx_instance_type: "mem1_ssd1_v2_x~{step1_cpus}"
     	cpu: step1_cpus
     	memory: step1_mem + "GB"
@@ -205,7 +205,7 @@ task step2 {
 	}
 
 	runtime {
-    	docker: "quay.io/biocontainers/regenie:3.1.1--h2b233e7_0"
+    	docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
 		dx_instance_type: "mem1_ssd1_v2_x~{step2_cpus}"
     	cpu: step2_cpus
     	memory: step2_mem + "GB"
@@ -226,7 +226,7 @@ task merge_by_pheno {
 	}
 
 	command <<<
-		set -euo pipefail
+		set -eu
 		
 		inputfiles_directory=$(dirname ~{step2_results[0]})
 		current_directory=$PWD
@@ -275,8 +275,8 @@ task merge_by_pheno {
 	}
 
 	runtime {
-		docker: "quay.io/biocontainers/regenie:4.0--h90dfdf2_1"
-		dx_instance_type: "mem1_ssd1_v2_x8"
+		docker: "quay.io/biocontainers/regenie:3.6--h90dfdf2_0"
+		dx_instance_type: "mem1_ssd1_v2_x4"
 	}
 
 	meta {

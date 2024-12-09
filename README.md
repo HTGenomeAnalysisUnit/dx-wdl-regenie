@@ -4,9 +4,10 @@ This is a WDL workflow for running [Regenie](https://rgcgithub.github.io/regenie
 
 ## Steps
 
-1. Run regenie step1 on inpit bed/bim/fam files
+1. Run regenie step1 on input bed/bim/fam files
 2. Run regenie step2 in parallel for each BGEN input, using output from step1
 3. Merge results from step2 by phenotype
+4. Reorganize output files and publish them to destination folder
 
 ## Inputs
 
@@ -14,22 +15,27 @@ This is a WDL workflow for running [Regenie](https://rgcgithub.github.io/regenie
 - step2 input are bgen/sample datasets, defined as `{ "prefix": "file", "bgen": "file.bgen", "sample": "file.sample" }`
 - a tab-separated phenotype file
 - a tab-separated covariate file
-- configurable options: step1/step2 threads, ref-first, maxCatCovars, binary pheno.
+- optionally, you can provide a snplist (`step1_qc_snplist`) and list of samples (`step1_qc_keep`) to subset the step1 input 
+- configurable options: step1/step2 threads/mem, ref-first, maxCatCovars, binary pheno.
 
-See regenie_inputs.json for the complete list of parameters.
+See `regenie_inputs.json` for the complete list of parameters.
 
 ## How to run on DNANexus
 
-An example of the json configuration file is provided in exmaple/example_input.json. The workflow can be run on DNANexus using the following command:
+The workflow can be run on DNANexus using the following command:
 
 ```bash
 dx run /workflows/regenie/regenie_gwas \
 	-f input_confgiuration.json \
-	--destination /workflows/regenie/regenie_gwas/out \
+	--destination /workflows/regenie/out \
 	--priority high
 ```
 
-Keep in mind that all input files must be provided as DNANexus link objects. This mean they have to be indicated by DNANexus file ID and project ID (when the file is not in the same project as the workflow).
+### Prepare input JSON
+
+An example of the json configuration file is provided in [example/example_input.json](example/example_input.json). Adapt this file to your needs. 
+
+Keep in mind that all input files must be provided as DNANexus link objects. This means they have to be indicated by DNANexus file ID and project ID (when the file is not in the same project as the workflow).
 
 Example for a file in the same project:
 
@@ -42,3 +48,5 @@ Example for a file in a different project:
 ```json
 { "$dnanexus_link": { "project": "project-Gx6JqFQJ08pQqgF9b577b5XQ", "id": "file-Gx6JqFQJ08pQqgF9b577b5XQ" } }
 ```
+
+You can get the file ID of a specific file by running `dx describe /path/to/file`.

@@ -1,10 +1,15 @@
 {
+  "stage-common.output_tag": "test_run1",
   "stage-common.step1_qc_snplist": { "$dnanexus_link": "file-Gx6FZZjJQxJZq8yVk2g9yJ27" },
   "stage-common.step1_qc_keep": { "$dnanexus_link": "file-Gx6FZZjJQxJg4X6PQFgkv2fg" },
-  "stage-common.step2Datasets___dxfiles": [],
-  "stage-common.covars": "PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10,sex,age",
-  "stage-common.step1_mem": 32,
-  "stage-common.covar_file": { "$dnanexus_link": "file-Gx6JqFQJ08pQqgF9b577b5XQ" },
+  "stage-common.step1dataset": {
+    "___": {
+      "prefix": "ukb22418_c1_22_v2_merged_qc_pass",
+      "bed": { "$dnanexus_link": "file-Gx6FZZjJQxJqb1zKXkP4j6Q2" },
+      "bim": { "$dnanexus_link": "file-Gx6FZZjJQxJz20Jgxqjb5VXK" },
+      "fam": { "$dnanexus_link": "file-Gx6FZZjJQxJY6Qb2gZ006XP3" }
+    }
+  },
   "stage-common.step2Datasets": {
     "___": [{
       "prefix": "ukb21007_c22_b0_v1",
@@ -17,23 +22,18 @@
       "sample": { "$dnanexus_link": {"project" : "project-GvbfZj8Jjp7pv1F7KyVPGjp6", "id": "file-GvbqVF8JbK7pqFY6gf8bP8F9" } }
     }]
   },
-  "stage-common.step1_cpus": 16,
-  "stage-common.step2_cpus": 16,
+  "stage-common.pheno_file": { "$dnanexus_link": "file-Gx4yXpjJ08pXxKYv6j7940X2" },
+  "stage-common.phenos": "B_exhausted,B_memory_IGHM_high",
+  "stage-common.covar_file": { "$dnanexus_link": "file-Gx6JqFQJ08pQqgF9b577b5XQ" },
+  "stage-common.covars": "PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10,sex,age",
   "stage-common.maxCatLevels": 10,
   "stage-common.ref_first": false,
-  "stage-common.pheno_file": { "$dnanexus_link": "file-Gx4yXpjJ08pXxKYv6j7940X2" },
   "stage-common.step2_minMAC": 100,
-  "stage-common.phenos": "B_exhausted,B_memory_IGHM_high",
   "stage-common.binary_trait": false,
+  "stage-common.step1_cpus": 16,
+  "stage-common.step2_cpus": 16,
+  "stage-common.step1_mem": 32,
   "stage-common.step2_mem": 32,
   "stage-common.step1dataset___dxfiles": [],
-  "stage-common.output_tag": "test_run1",
-  "stage-common.step1dataset": {
-    "___": {
-      "prefix": "ukb22418_c1_22_v2_merged_qc_pass",
-      "bed": { "$dnanexus_link": "file-Gx6FZZjJQxJqb1zKXkP4j6Q2" },
-      "bim": { "$dnanexus_link": "file-Gx6FZZjJQxJz20Jgxqjb5VXK" },
-      "fam": { "$dnanexus_link": "file-Gx6FZZjJQxJY6Qb2gZ006XP3" }
-    }
-  }
+  "stage-common.step2Datasets___dxfiles": []
 }
