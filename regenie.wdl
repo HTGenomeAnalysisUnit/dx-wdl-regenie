@@ -245,19 +245,23 @@ task merge_by_pheno {
 		cd $current_directory
 		for pheno in $phenos; do
 			echo "Processing phenotype: $pheno"
-			# Create a temporary file to store the concatenated results
 			temp_file="temp_${pheno}.regenie"
 			
+			echo "Files for phenotype $pheno:"
+			ls $inputfiles_directory/*$pheno.regenie.gz
+
 			# Extract the header from the first file
 			first_file=$(ls $inputfiles_directory/*$pheno.regenie.gz | head -n 1)
 			zcat $first_file | head -n 1 > $temp_file
-			
+			echo "Header saved to $temp_file"
+
 			# Concatenate the rest of the files, skipping the header
 			for file in $inputfiles_directory/*.$pheno.regenie.gz; do
 				zcat $file | tail -n +2 >> $temp_file
 			done
 			
 			# Compress the concatenated file
+			echo "Compressing the concatenated file"
 			gzip -c $temp_file > "~{output_tag}-${pheno}.merged.regenie.gz"
 			
 			# Remove the temporary file
@@ -271,7 +275,7 @@ task merge_by_pheno {
 
 	runtime {
 		docker: "quay.io/biocontainers/regenie:4.0--h90dfdf2_1"
-		dx_instance_type: "mem1_ssd1_v2_x4"
+		dx_instance_type: "mem1_ssd1_v2_x8"
 	}
 
 	meta {
