@@ -257,7 +257,7 @@ task merge_by_pheno {
 			echo "Header saved to $temp_file"
 
 			# Concatenate the rest of the files, skipping the header
-			for file in $inputfiles_directory/*.$pheno.regenie.gz; do
+			for file in $inputfiles_directory/*$pheno.regenie.gz; do
 				zcat $file | tail -n +2 >> $temp_file
 			done
 			
