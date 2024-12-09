@@ -226,7 +226,7 @@ task merge_by_pheno {
 	}
 
 	command <<<
-		set -eu
+		set -euo pipefail
 		
 		inputfiles_directory=$(dirname ~{step2_results[0]})
 		current_directory=$PWD
